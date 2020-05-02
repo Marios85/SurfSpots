@@ -1,10 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="App">
+    <Container className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -18,8 +21,9 @@ function App() {
         >
           Learn React
         </a>
+        <Button variant="primary">Primary</Button>
       </header>
-    </div>
+    </Container>
   );
 }
 
