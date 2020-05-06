@@ -1,0 +1,40 @@
+{
+    "spots":[
+        {
+        "name":"Ribeira D'Ilhas", 
+        "country": "Portugal",
+        "region": "Lisbon",
+        "tides": "All",
+        "bestTide": "Mid",
+        "minSwell": 0.5,
+        "maxSwell": 3,
+        "swellDirection": "180-360",
+        "bestSwellDirection": "",
+        "notes": ""
+        },
+        {
+        "name":"Sao Juliao - The Left",
+        "country": "Portugal",
+        "region": "Lisbon",
+        "tides": "Low",
+        "bestTide": "Low",
+        "minSwell": 1,
+        "maxSwell": 3,
+        "swellDirection": "180-360",
+        "bestSwellDirection": "",
+        "notes": ""
+        },
+        {
+        "name":"Mawi",
+        "country": "Indonesia",
+        "region": "Lombok",
+        "tides": "Mid - High",
+        "bestTide": "Mid",
+        "minSwell": 0.5,
+        "maxSwell": 5,
+        "swellDirection": "180-270",
+        "bestSwellDirection": "220-270",
+        "notes": ""
+        }
+    ]
+}

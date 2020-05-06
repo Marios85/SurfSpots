@@ -1,30 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './css/App.css';
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
+import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/App.css';
+import {Spots} from './components/Spots'
+import {Content} from './components/Content'
+//import {History} from 'history'
+import {ReactRouter,Router, Route,IndexRoute,browserHistory} from 'react-router'
 
-function App() {
-  return (
-    <Container className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button variant="primary">Primary</Button>
-      </header>
-    </Container>
-  );
-}
 
-export default App;
+let hashHistory = ReactRouter.useRouterHistory(History.createHashHistory)({
+  queryKey: false
+})
+
+ReactDOM.render((
+    <Router history={hashHistory}>
+    <Route path="/" component={Content}>
+      <Route path="/spots" component={Spots}>
+        {/* <Route path=":id" component={Movie} /> */}
+      </Route>
+    </Route>
+  </Router>
+  ), document.getElementById('content'));
