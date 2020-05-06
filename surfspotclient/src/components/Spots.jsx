@@ -1,12 +1,19 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
-import data from '../spots.json'
+
+import Layout from './Layout';
+import {Link} from 'react-router-dom'
+
 
 class Spots extends React.Component{
 render()
 {
+    console.log(this.props)
     return(
-    <Table striped bordered hover>
+        <Layout>
+
+        <h1 className="text-left mt-3 mb-3">Surf Spots</h1>
+        <Table striped bordered hover>
         <thead>
             <tr>
             <th>name</th>
@@ -22,10 +29,10 @@ render()
             </tr>
         </thead>
         <tbody>
-            {data.spots.map(function(spot){
+            {this.props.spots.map(function(spot){
                 return(
-                    <tr>
-                    <td>{spot.name}</td>
+                    <tr key={spot.id}>
+                    <td  ><Link to={`/Spots/${spot.id}`}>{spot.name}</Link></td>
                     <td>{spot.country}</td>
                     <td>{spot.region}</td>
                     <td>{spot.tides}</td>
@@ -40,6 +47,7 @@ render()
             })}
         </tbody>
     </Table>
+    </Layout>
         );}
 }
 

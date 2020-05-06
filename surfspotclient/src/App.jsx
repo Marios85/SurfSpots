@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/App.css';
 import {Spots} from './components/Spots'
+import {Header} from './components/Layout'
 import {Content} from './components/Content'
 //import {History} from 'history'
 import {Router, Route,IndexRoute,browserHistory} from 'react-router-dom'
@@ -11,6 +12,7 @@ import {Router, Route,IndexRoute,browserHistory} from 'react-router-dom'
 
 ReactDOM.render((
     <Router >
+      <Header/>
     <Route path="/" component={Content}>
       <Route path="/spots" component={Spots}>
         {/* <Route path=":id" component={Movie} /> */}
