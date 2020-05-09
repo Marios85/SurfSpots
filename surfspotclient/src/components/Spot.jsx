@@ -1,14 +1,14 @@
 /* eslint-disable eqeqeq */
 import React from 'react';
-import Layout from './Layout';
 import Table from 'react-bootstrap/Table';
 
 class Spot extends React.Component
 {
     render (){
+        console.log(this.props)
         let spot = this.props.spots.find(element=>element.id == this.props.match.params.id)
         return(
-            <Layout>
+            <div>
                 <h1>Spot Details</h1>
                 <Table>
              <thead>
@@ -39,9 +39,8 @@ class Spot extends React.Component
                 <td>{spot.notes}</td>
                 </tr>
         </tbody>
-                </Table>
-            </Layout>
-            
+                </Table>    
+                </div>      
         );}
 }
 

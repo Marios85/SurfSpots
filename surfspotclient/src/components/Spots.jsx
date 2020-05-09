@@ -1,18 +1,25 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
+import { withRouter } from "react-router-dom"; // if change to function then can opt for useParams instead
 
-import Layout from './Layout';
 import {Link} from 'react-router-dom'
-
+import {GroupBy} from '../helper'
 
 class Spots extends React.Component{
 render()
 {
-    console.log(this.props)
-    return(
-        <Layout>
+    var spots = this.props.spots
+    let region = this.props.match.params.region
+    var header = "Worldwide"
+    if(region !=null)
+    {
+        spots = GroupBy(spots, "region")[region]
+        header = region
+    }
 
-        <h1 className="text-left mt-3 mb-3">Surf Spots</h1>
+    return(
+        <div>
+        <h1 className="text-left mt-3 mb-3">{header}</h1>
         <Table striped bordered hover>
         <thead>
             <tr>
@@ -29,10 +36,10 @@ render()
             </tr>
         </thead>
         <tbody>
-            {this.props.spots.map(function(spot){
+            {spots.map(function(spot){
                 return(
                     <tr key={spot.id}>
-                    <td  ><Link to={`/Spots/${spot.id}`}>{spot.name}</Link></td>
+                    <td  ><Link to={`/Spots/Spot/${spot.id}`}>{spot.name}</Link></td>
                     <td>{spot.country}</td>
                     <td>{spot.region}</td>
                     <td>{spot.tides}</td>
@@ -47,8 +54,7 @@ render()
             })}
         </tbody>
     </Table>
-    </Layout>
-        );}
+    </div> );  }
 }
 
-export {Spots}
+export default withRouter(Spots);
