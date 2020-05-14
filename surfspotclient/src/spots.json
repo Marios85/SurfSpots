@@ -38,6 +38,20 @@
         "swellDirection": "180-270",
         "bestSwellDirection": "220-270",
         "notes": ""
+
+        },
+		{
+        "id":4,
+        "name":"Matadeiro", 
+        "country": "Portugal",
+        "region": "Lisbon",
+        "tides": "All",
+        "bestTide": "Mid",
+        "minSwell": 1,
+        "maxSwell": 3,
+        "swellDirection": "180-360",
+        "bestSwellDirection": "",
+        "notes": ""
         }
     ]
 }
