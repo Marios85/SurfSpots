@@ -3,24 +3,33 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { GroupBy } from '../helper'
 import { connect } from 'react-redux'
 import { fetchspots } from '../reducers/spots'
-
+import axios from 'axios'
+import {Constants} from '../constants'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-const data = require('../spots.json')
+
 
 class Layout extends React.Component {
+  
   componentDidMount() {
-    this.props.dispatch(fetchspots(data.spots))
+    axios.get(Constants.webApiUrl+'spots', {	headers: {
+      'Access-Control-Allow-Origin': '*',
+    }}).then((response) => {
+      console.log(response.data)
+      this.props.dispatch(fetchspots(response.data))
+      // mode: 'no-cors'
+    })
   }
 
 
   render() {
     let regions = () => {
       var items = []
-      for (var key in GroupBy(this.props.spots, "region")) { items.push(<NavDropdown.Item key={"navdd" + key} href={"#Spots/" + key}>{key}</NavDropdown.Item>) }
+      if(this.props.spots != null)
+        for (var key in GroupBy(this.props.spots, "region")) { items.push(<NavDropdown.Item key={"navdd" + key} href={"#Spots/" + key}>{key}</NavDropdown.Item>) }
       return items
     }
 

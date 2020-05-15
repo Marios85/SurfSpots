@@ -29,6 +29,15 @@ namespace SurfSpotsAPI
 		{
 			services.AddDbContext<SurfSpotsDBContext>();
 			services.AddControllers();
+
+			/*
+			services.AddCors(c =>
+			{
+				c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+			});*/
+
+
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +47,9 @@ namespace SurfSpotsAPI
 			{
 				app.UseDeveloperExceptionPage();
 			}
+
+			//app.UseCors();
+			app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 			app.UseHttpsRedirection();
 
@@ -49,6 +61,8 @@ namespace SurfSpotsAPI
 			{
 				endpoints.MapControllers();
 			});
+
+
 		}
 	}
 }

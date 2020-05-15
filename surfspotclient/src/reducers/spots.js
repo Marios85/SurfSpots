@@ -3,7 +3,7 @@ import {handleActions,  createActions } from 'redux-actions'
 const defaultState = { spots: [] };
 
 export const { fetchspots, fetchspot } = createActions({
-    FETCHSPOTS: (data) => ({ data }),
+    FETCHSPOTS: (data) => ({data}),
     FETCHSPOT: (id) => ({id})
   });
 
