@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SurfSpots.Persistence;
 using SurfSpots.Persistence.Models;
+using Newtonsoft.Json;
 
 namespace SurfSpotsAPI
 {
@@ -28,7 +29,8 @@ namespace SurfSpotsAPI
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddDbContext<SurfSpotsDBContext>();
-			services.AddControllers();
+			services.AddControllers(); //.AddNewtonsoftJson();
+
 
 			/*
 			services.AddCors(c =>
