@@ -1,21 +1,39 @@
 import React from 'react';
-import Table from 'react-bootstrap/Table'
 import { withRouter } from "react-router-dom"; // if change to function then can opt for useParams instead
 import { Link } from 'react-router-dom'
-import { GroupBy } from '../helper'
+import NewSpotModal from './NewSpot'
+
+import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
+
 
 
 class Spots extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isShown: false
+        }
+        
+        //this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
 
     render() {
-        var spots = this.props.spots
-        var header = "Worldwide"
-        if (this.props.match.params.region != null)
-            header = this.props.match.params.region
+        var spots
+        let region = this.props.match.params.region
+        if (region != null) {
+            spots = this.props.spots.filter(x => x.region === region)
+        }
+        else {
+            spots = this.props.spots
+            region = "Worldwide"
+        }
 
         return (
             <div>
-                <h1 className="text-left mt-3 mb-3">{header}</h1>
+                <h1 className="text-left mt-3 mb-3">{region}</h1>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -50,9 +68,10 @@ class Spots extends React.Component {
                         })}
                     </tbody>
                 </Table>
+                <Button onClick={() => this.setState({ isShown: true })}>Add Spot</Button>
+                <NewSpotModal show={(this.state.isShown)} onHide={() => this.setState({ isShown: false })} data={this.props} />
             </div>);
     }
 }
-
 
 export default withRouter((Spots));
