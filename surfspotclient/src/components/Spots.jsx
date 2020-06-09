@@ -5,6 +5,10 @@ import NewSpotModal from './NewSpot'
 
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import Accordion from 'react-bootstrap/Accordion'
+import Card from 'react-bootstrap/Card'
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
 
 
 
@@ -14,8 +18,6 @@ class Spots extends React.Component {
         this.state = {
             isShown: false
         }
-        
-        //this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 
@@ -34,6 +36,26 @@ class Spots extends React.Component {
         return (
             <div>
                 <h1 className="text-left mt-3 mb-3">{region}</h1>
+                <Accordion>
+                    <Card>
+                        <Card.Header>
+                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                            Search Spots
+                        </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="0">
+                        <Card.Body>
+                            <div>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Prepend>
+                                <InputGroup.Text id="basic-addon1">Swell Size</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <FormControl type="number" step=".1" placeholder="Metres" aria-label="Swell Size" aria-describedby="basic-addon1"/>
+                            </InputGroup>
+                            </div></Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -52,7 +74,7 @@ class Spots extends React.Component {
                     <tbody>
                         {spots != null && spots.map(function (spot) {
                             return (
-                                <tr key={spot.id}>
+                                <tr key={spot.id} id="spot-table-row">
                                     <td><Link to={`/Spots/Spot/${spot.id}`}>{spot.name}</Link></td>
                                     <td>{spot.country}</td>
                                     <td>{spot.region}</td>
