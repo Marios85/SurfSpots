@@ -1,14 +1,22 @@
 /* eslint-disable eqeqeq */
 import React , {useEffect } from 'react';
-import Table from 'react-bootstrap/Table';
-import { useParams } from "react-router-dom"; // if change to function then can opt for useParams instead
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchspot } from '../reducers/spots'
 
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button'
+
 export default function Spot(props) {
+
+function backHandler()
+{
+    history.goBack()
+}
 
         let params = useParams();
         let dispatch = useDispatch()
+        let history = useHistory()
         useEffect(() => 
         {
             dispatch(fetchspot(params.id))
@@ -49,6 +57,7 @@ export default function Spot(props) {
                         }
                     </tbody>
                 </Table>
+                <Button onClick={backHandler}>Back</Button>
             </div>
         );
     
