@@ -1,61 +1,27 @@
-import React from 'react';
-import { withRouter } from "react-router-dom"; // if change to function then can opt for useParams instead
-import { Link } from 'react-router-dom'
+import React, {useState} from 'react';
+import { Link, useParams } from 'react-router-dom'
 import NewSpotModal from './NewSpot'
 
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
 
+export default function Spots (props) {
+        const [isShown, setIsShown] = useState(false)
+        const params = useParams()
 
-
-class Spots extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            isShown: false
-        }
-    }
-
-
-
-    render() {
         var spots
-        let region = this.props.match.params.region
+        let region = params.region
         if (region != null) {
-            spots = this.props.spots.filter(x => x.region === region)
+            spots = props.spots.filter(x => x.region === region)
         }
         else {
-            spots = this.props.spots
+            spots = props.spots
             region = "Worldwide"
         }
 
         return (
             <div>
                 <h1 className="text-left mt-3 mb-3">{region}</h1>
-                <Accordion>
-                    <Card>
-                        <Card.Header>
-                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                            Search Spots
-                        </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="0">
-                        <Card.Body>
-                            <div>
-                            <InputGroup className="mb-3">
-                                <InputGroup.Prepend>
-                                <InputGroup.Text id="basic-addon1">Swell Size</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <FormControl type="number" step=".1" placeholder="Metres" aria-label="Swell Size" aria-describedby="basic-addon1"/>
-                            </InputGroup>
-                            </div></Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                </Accordion>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -90,10 +56,7 @@ class Spots extends React.Component {
                         })}
                     </tbody>
                 </Table>
-                <Button onClick={() => this.setState({ isShown: true })}>Add Spot</Button>
-                <NewSpotModal show={(this.state.isShown)} onHide={() => this.setState({ isShown: false })} data={this.props} />
+                <Button onClick={() => setIsShown(true)}>Add Spot</Button>
+                <NewSpotModal show={isShown} onHide={() => setIsShown(false)} data={props} />
             </div>);
-    }
 }
-
-export default withRouter((Spots));

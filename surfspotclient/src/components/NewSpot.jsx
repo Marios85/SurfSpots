@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 
-function NewSpotModal(props) {          
+export default function NewSpotModal(props) {          
     const initialFormData = Object.freeze({name: "", country: "", region:"", left:false, right:false, beach:false, reef:false, point:false,
     lowTide: false, midTide: false, highTide: false, minSwell: 0, maxSwell: 0, swellDirection:"", bestLowTide: false, bestMidTide: false,
     bestHighTide: false, bestSwellDirection: "", notes: ""});
@@ -132,5 +132,3 @@ function NewSpotModal(props) {
             </Modal>
         );
     }
-
-export default NewSpotModal

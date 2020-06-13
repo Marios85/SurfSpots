@@ -17,9 +17,4 @@ return data.reduce(function(storage, item) {
 }, {}); // {} is the initial value of the storage
 
 };
-// export function GetRegions(data, key)
-// { var items = []
-//     for(var key in GroupBy(this.props.spots, "region"))
-//  { items.push(<NavDropdown.Item key={"navdd"+key} href={"#Spots/"+key}>{key}</NavDropdown.Item>)}
-//  return items
-//}
+

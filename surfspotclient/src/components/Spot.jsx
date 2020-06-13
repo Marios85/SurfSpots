@@ -1,17 +1,27 @@
 /* eslint-disable eqeqeq */
-import React from 'react';
-import Table from 'react-bootstrap/Table';
-import { withRouter } from "react-router-dom"; // if change to function then can opt for useParams instead
-import { connect } from 'react-redux'
+import React , {useEffect } from 'react';
+import { useParams, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchspot } from '../reducers/spots'
 
-class Spot extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(fetchspot(this.props.match.params.id))
-    }
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button'
 
-    render() {
-        let spot = this.props.spot
+export default function Spot(props) {
+
+function backHandler()
+{
+    history.goBack()
+}
+
+        let params = useParams();
+        let dispatch = useDispatch()
+        let history = useHistory()
+        useEffect(() => 
+        {
+            dispatch(fetchspot(params.id))
+        });
+        const spot =  useSelector(state => state.spot)
         return (
             <div>
                 <h1>Spot Details</h1>
@@ -47,13 +57,8 @@ class Spot extends React.Component {
                         }
                     </tbody>
                 </Table>
+                <Button onClick={backHandler}>Back</Button>
             </div>
         );
-    }
+    
 }
-
-const mapStateToProps = state => {
-    return { spot: state.spot };
-};
-
-export default withRouter(connect(mapStateToProps)(Spot)) 
